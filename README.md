@@ -1,6 +1,9 @@
-# Log Analyzer
+# LogAInizer
 
 A powerful and user-friendly application for analyzing and visualizing log files. Built with Python backend and React frontend using Tauri.
+
+![LogAInizer](https://raw.githubusercontent.com/jordan-dalby/LogAInizer/refs/heads/main/images/logainizer-dashboard.png "LogAInizer")
+
 
 ## Features
 
