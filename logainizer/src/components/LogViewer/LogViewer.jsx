@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { ChevronDown, ChevronUp, Minus, Search } from 'lucide-react';
 import ContextMenu from './ContextMenu';
 import LogRow from './LogRow';
+import { useSearch } from './SearchSelected';
 
 const LogViewer = ({ logs }) => {
   const [filteredLogs, setFilteredLogs] = useState(logs);
@@ -17,6 +18,12 @@ const LogViewer = ({ logs }) => {
   const scrollContainerRef = useRef(null);
 
   const logLevels = useMemo(() => ['TRACE', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL', 'UNKNOWN'], []);
+
+  const { isLoading, error, handleSearchClick } = useSearch({
+    onDataReceived: (searchedLogs) => {
+      onLogsUpdate(searchedLogs);
+    },
+  });
 
   useEffect(() => {
     let filtered = logs.filter(log => 
@@ -35,7 +42,6 @@ const LogViewer = ({ logs }) => {
     }
 
     setFilteredLogs(filtered);
-    console.log(filtered.length);
     setSelectedIndices(new Set());
     setInitialSelectionIndex(null);
   }, [logs, searchTerm, selectedLevels, sortOrder]);
@@ -205,6 +211,24 @@ const LogViewer = ({ logs }) => {
     setSelectedLevels(new Set());
   };
 
+  const handleSearchSelected = useCallback(() => {
+    const selectedLogs = Array.from(selectedIndices)
+      .sort((a, b) => a - b)
+      .map(index => filteredLogs[index]);
+    
+    handleSearchClick(
+      selectedLogs,
+      `
+      You are a professional debugger, specializing in log analysis. 
+      You have been hired by a company to analyze their logs and find the root cause of an issue.
+      The company has provided you with a set of logs to analyze.
+      Take each log, and analyze it further to determine the root cause of the issue.
+      Each line starts with an index, in your analysis, you must directly reference the index of the log.
+      `
+    );
+    setContextMenu(null);
+  }, [selectedIndices, filteredLogs, handleSearchClick]);
+
   return (
     <div className="flex flex-col h-full bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
       <div className="p-4 bg-gray-900 border-b border-gray-700">
@@ -294,6 +318,7 @@ const LogViewer = ({ logs }) => {
           onCopySelected={handleCopySelected}
           onCopySingle={handleCopySingle}
           isSingleLog={contextMenu.isSingleLog}
+          onSearchSelected={handleSearchSelected}
         />
       )}
     </div>

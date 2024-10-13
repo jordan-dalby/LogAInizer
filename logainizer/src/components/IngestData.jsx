@@ -39,7 +39,7 @@ const IngestData = ({ onDataReceived }) => {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/analyse', {
+      const response = await fetch('http://127.0.0.1:5000/ingest', {
         method: 'POST',
         body: formData,
       });

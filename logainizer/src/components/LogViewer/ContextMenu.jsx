@@ -1,7 +1,7 @@
 import React from 'react';
-import { Copy } from 'lucide-react';
+import { Copy, Search } from 'lucide-react';
 
-const ContextMenu = ({ x, y, onClose, onCopySelected, onCopySingle, isSingleLog }) => {
+const ContextMenu = ({ x, y, onClose, onCopySelected, onCopySingle, isSingleLog, onSearchSelected }) => {
   return (
     <div 
       className="absolute bg-gray-800 border border-gray-600 rounded shadow-lg py-1 z-50"
@@ -23,6 +23,13 @@ const ContextMenu = ({ x, y, onClose, onCopySelected, onCopySingle, isSingleLog 
       >
         <Copy size={16} className="mr-2" />
         Copy This Log
+      </button>
+      <button
+        className="w-full text-left px-4 py-2 hover:bg-gray-700 flex items-center text-gray-200"
+        onClick={onSearchSelected}
+      >
+        <Search size={16} className="mr-2" />
+        Search Selected
       </button>
     </div>
   );
