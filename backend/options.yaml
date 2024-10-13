@@ -1,0 +1,55 @@
+logRegexes:
+  # Logcat format
+  - regex: '(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3})\s+(\d+)\s+(\d+)\s+([A-Z])/([^:]+):\s*(.*)'
+    timestampGroup: 1
+    logLevelGroup: 4
+    messageGroup: 6
+
+  # Other formats
+  - regex: '(\d{4}[-./]\d{2}[-./]\d{2}[T ]?\d{2}:\d{2}:\d{2}\.\d{3})(?:\])?(?:\s*-)?(?:\s*\|)?\s*(?:--\s*)?(?:\[?(\w+)\]?(?::|]|-{1,2}|\s*-|\|)?)\s*(?:-{1,2}\s*|:\s*|\|\s*|\s*)(.+)'
+    timestampGroup: 1
+    logLevelGroup: 2
+    messageGroup: 3
+
+  # Matches dates such as Mon, 15 May 2023 14:30:15
+  - regex: '(\w{3},\s+\d{1,2}\s+\w+\s+\d{4}\s+\d{2}:\d{2}:\d{2})(?:\s+[+-]\d{4})?(?:\])?(?:\s*-)?(?:\s*\|)?\s*(?:--\s*)?(?:\[?(\w+)\]?(?::|]|-{1,2}|\s*-|\|)?)\s*(?:-{1,2}\s*|:\s*|\|\s*|\s*)(.+)'
+    timestampGroup: 1
+    logLevelGroup: 2
+    messageGroup: 3
+
+  # Add more formats as required, or modify the existing ones
+
+logLevelMapping:
+    # Fatal levels
+    FATAL: FATAL
+    CRITICAL: FATAL
+    SEVERE: FATAL
+    F: FATAL
+
+    # Error levels
+    ERROR: ERROR
+    ERR: ERROR
+    E: ERROR
+    
+    # Warning levels
+    WARN: WARNING
+    WARNING: WARNING
+    W: WARNING
+    
+    # Info levels
+    INFO: INFO
+    INFORMATION: INFO
+    NOTICE: INFO
+    I: INFO
+    
+    # Debug levels
+    DEBUG: DEBUG
+    FINE: DEBUG
+    VERBOSE: DEBUG
+    D: DEBUG
+
+    # Trace levels
+    TRACE: TRACE
+    FINER: TRACE
+    FINEST: TRACE
+    T: TRACE
