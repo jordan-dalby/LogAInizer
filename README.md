@@ -4,7 +4,6 @@ A powerful and user-friendly application for analyzing and visualizing log files
 
 ![LogAInizer](https://raw.githubusercontent.com/jordan-dalby/LogAInizer/refs/heads/main/images/logainizer-dashboard.png "LogAInizer")
 
-
 ## Features
 
 - **Log Entry**: Easily input logs directly into the application.
@@ -22,14 +21,6 @@ A powerful and user-friendly application for analyzing and visualizing log files
 - Backend: Python
 - Frontend: React
 - Desktop App Framework: Tauri (with Vite)
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8+
-- Node.js 14+
-- Rust (for Tauri)
 
 ## Usage
 
