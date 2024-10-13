@@ -37,13 +37,16 @@ const LogRow = ({ log, index, isSelected, onClick, onContextMenu }) => {
       onClick={onClick}
       onContextMenu={onContextMenu}
     >
-      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap w-1/6">{log.timestamp}</td>
-      <td className="px-4 py-4 whitespace-nowrap w-1/12">
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getLevelStyle(log.level)}`}>
-          {getLogIcon(log.level)}
-          <span className="ml-1">{log.level ? log.level.toUpperCase() : 'UNKNOWN'}</span>
-        </span>
-      </td>
+      <td className="px-4 py-4 text-sm text-gray-300 whitespace-nowrap w-1/6">{log.timestamp == 'UNKNOWN' ? '-' : log.timestamp}</td>
+      
+        <td className="px-4 py-4 whitespace-nowrap w-1/12">
+        {log.level != 'UNKNOWN' && (
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getLevelStyle(log.level)}`}>
+            {getLogIcon(log.level)}
+            <span className="ml-1">{log.level ? log.level.toUpperCase() : 'UNKNOWN'}</span>
+          </span>
+      )}
+        </td>
       <td className="px-4 py-4 text-sm text-gray-300">{log.message}</td>
     </tr>
   );

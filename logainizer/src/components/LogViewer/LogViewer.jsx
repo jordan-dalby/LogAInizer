@@ -35,6 +35,7 @@ const LogViewer = ({ logs }) => {
     }
 
     setFilteredLogs(filtered);
+    console.log(filtered.length);
     setSelectedIndices(new Set());
     setInitialSelectionIndex(null);
   }, [logs, searchTerm, selectedLevels, sortOrder]);
