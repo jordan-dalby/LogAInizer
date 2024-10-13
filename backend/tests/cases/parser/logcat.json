@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "10-12 14:15:30.123 12345 67890 I MainActivity: Application started",
+        "expectedTimestamp": "2024-10-12 14:15:30.1230",
+        "expectedLogLevel": "INFO",
+        "expectedMessage": "12345 67890 MainActivity: Application started"
+    },
+    {
+        "logLine": "03-05 08:23:45.456 54321 98765 W MyApp: Resource leak detected",
+        "expectedTimestamp": "2024-03-05 08:23:45.4560",
+        "expectedLogLevel": "WARNING",
+        "expectedMessage": "54321 98765 MyApp: Resource leak detected"
+    },
+    {
+        "logLine": "12-01 17:45:10.789 10101 20202 E NetworkService: Failed to connect",
+        "expectedTimestamp": "2024-12-01 17:45:10.7890",
+        "expectedLogLevel": "ERROR",
+        "expectedMessage": "10101 20202 NetworkService: Failed to connect"
+    },
+    {
+        "logLine": "05-20 11:30:22.345 30303 40404 F CriticalService: System crash detected",
+        "expectedTimestamp": "2024-05-20 11:30:22.3450",
+        "expectedLogLevel": "FATAL",
+        "expectedMessage": "30303 40404 CriticalService: System crash detected"
+    },
+    {
+        "logLine": "08-15 09:45:55.678 50505 60606 D DatabaseHelper: Query execution time: 150ms",
+        "expectedTimestamp": "2024-08-15 09:45:55.6780",
+        "expectedLogLevel": "DEBUG",
+        "expectedMessage": "50505 60606 DatabaseHelper: Query execution time: 150ms"
+    },
+    {
+        "logLine": "11-30 16:20:33.901 70707 80808 V AudioManager: Setting volume to 7",
+        "expectedTimestamp": "2024-11-30 16:20:33.9010",
+        "expectedLogLevel": "TRACE",
+        "expectedMessage": "70707 80808 AudioManager: Setting volume to 7"
+    }
+]

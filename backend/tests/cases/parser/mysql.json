@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "2024-10-12T15:20:30.123456Z 12345 [Warning] Aborted connection 123 to db: 'test'",
+        "expectedTimestamp": "2024-10-12 15:20:30.1234",
+        "expectedLogLevel": "WARNING",
+        "expectedMessage": "12345 Aborted connection 123 to db: 'test'"
+    },
+    {
+        "logLine": "2024-08-01T03:12:45.789101Z 67890 [Note] Server startup complete",
+        "expectedTimestamp": "2024-08-01 03:12:45.7891",
+        "expectedLogLevel": "INFO",
+        "expectedMessage": "67890 Server startup complete"
+    },
+    {
+        "logLine": "2023-07-15T18:30:59.654321Z 54321 [Error] Table 'users' doesn't exist",
+        "expectedTimestamp": "2023-07-15 18:30:59.6543",
+        "expectedLogLevel": "ERROR",
+        "expectedMessage": "54321 Table 'users' doesn't exist"
+    },
+    {
+        "logLine": "2024-11-30T22:45:10.987654Z 98765 [Fatal] Database corruption detected",
+        "expectedTimestamp": "2024-11-30 22:45:10.9876",
+        "expectedLogLevel": "FATAL",
+        "expectedMessage": "98765 Database corruption detected"
+    },
+    {
+        "logLine": "2025-01-05T09:15:30.123456Z 11111 [Debug] Query execution plan: INDEX SCAN",
+        "expectedTimestamp": "2025-01-05 09:15:30.1234",
+        "expectedLogLevel": "DEBUG",
+        "expectedMessage": "11111 Query execution plan: INDEX SCAN"
+    },
+    {
+        "logLine": "2025-02-20T14:30:45.654321Z 22222 [Trace] Buffer pool hit ratio: 99.8%",
+        "expectedTimestamp": "2025-02-20 14:30:45.6543",
+        "expectedLogLevel": "TRACE",
+        "expectedMessage": "22222 Buffer pool hit ratio: 99.8%"
+    }
+]

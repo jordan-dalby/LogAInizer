@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "2024-10-12T11:45:30.654321Z INFO Pod my-pod created successfully",
+        "expectedTimestamp": "2024-10-12 11:45:30.6543",
+        "expectedLogLevel": "INFO",
+        "expectedMessage": "Pod my-pod created successfully"
+    },
+    {
+        "logLine": "2023-09-07T06:12:15.123456Z ERROR Failed to pull image 'nginx:latest'",
+        "expectedTimestamp": "2023-09-07 06:12:15.1234",
+        "expectedLogLevel": "ERROR",
+        "expectedMessage": "Failed to pull image 'nginx:latest'"
+    },
+    {
+        "logLine": "2022-05-22T03:08:59.987654Z WARN CPU usage exceeds limit on node node-01",
+        "expectedTimestamp": "2022-05-22 03:08:59.9876",
+        "expectedLogLevel": "WARNING",
+        "expectedMessage": "CPU usage exceeds limit on node node-01"
+    },
+    {
+        "logLine": "2024-11-15T09:30:45.123456Z FATAL Node failure detected",
+        "expectedTimestamp": "2024-11-15 09:30:45.1234",
+        "expectedLogLevel": "FATAL",
+        "expectedMessage": "Node failure detected"
+    },
+    {
+        "logLine": "2024-12-01T14:20:30.987654Z DEBUG Debugging connection issue",
+        "expectedTimestamp": "2024-12-01 14:20:30.9876",
+        "expectedLogLevel": "DEBUG",
+        "expectedMessage": "Debugging connection issue"
+    },
+    {
+        "logLine": "2025-01-10T18:55:22.345678Z TRACE Detailed API call trace",
+        "expectedTimestamp": "2025-01-10 18:55:22.3456",
+        "expectedLogLevel": "TRACE",
+        "expectedMessage": "Detailed API call trace"
+    }
+]

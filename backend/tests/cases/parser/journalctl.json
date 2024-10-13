@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "Oct 12 14:22:36 mymachine kernel: [Hardware Error]",
+        "expectedTimestamp": "2024-10-12 14:22:36.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "mymachine kernel: [Hardware Error]"
+    },
+    {
+        "logLine": "Sep 24 08:19:01 server systemd[1]: Started Network Manager",
+        "expectedTimestamp": "2024-09-24 08:19:01.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "server systemd[1]: Started Network Manager"
+    },
+    {
+        "logLine": "Jan 6 23:58:00 localhost sshd[4321]: Accepted publickey for user from 192.168.1.101",
+        "expectedTimestamp": "2024-01-06 23:58:00.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "localhost sshd[4321]: Accepted publickey for user from 192.168.1.101"
+    },
+    {
+        "logLine": "Nov 15 10:30:45 webserver apache2[1234]: [FATAL] Unable to bind to port 80",
+        "expectedTimestamp": "2024-11-15 10:30:45.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "webserver apache2[1234]: [FATAL] Unable to bind to port 80"
+    },
+    {
+        "logLine": "Dec 3 17:22:15 dbserver mysql[5678]: [Warning] Aborted connection 123 to db: 'users'",
+        "expectedTimestamp": "2024-12-03 17:22:15.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "dbserver mysql[5678]: [Warning] Aborted connection 123 to db: 'users'"
+    },
+    {
+        "logLine": "Feb 28 09:45:30 appserver app[9876]: [DEBUG] Connection pool status: 5 active, 10 idle",
+        "expectedTimestamp": "2024-02-28 09:45:30.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "appserver app[9876]: [DEBUG] Connection pool status: 5 active, 10 idle"
+    }
+]

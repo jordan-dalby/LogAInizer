@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "123.45.67.89 - frank [10/Oct/2024:13:55:36 +0000] \"GET /apache_pb.gif HTTP/1.0\" 200 2326",
+        "expectedTimestamp": "2024-10-10 13:55:36.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "123.45.67.89 - frank \"GET /apache_pb.gif HTTP/1.0\" 200 2326"
+    },
+    {
+        "logLine": "192.168.0.1 - user [01/Jan/2024:23:11:45 +0200] \"POST /login.php HTTP/1.1\" 302 512",
+        "expectedTimestamp": "2024-01-01 23:11:45.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "192.168.0.1 - user \"POST /login.php HTTP/1.1\" 302 512"
+    },
+    {
+        "logLine": "10.0.0.2 - admin [20/Mar/2023:05:23:22 +0100] \"DELETE /api/resource HTTP/2.0\" 404 128",
+        "expectedTimestamp": "2023-03-20 05:23:22.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "10.0.0.2 - admin \"DELETE /api/resource HTTP/2.0\" 404 128"
+    },
+    {
+        "logLine": "203.0.113.10 - - [15/Dec/2024:18:30:45 +0000] \"GET /nonexistent.html HTTP/1.1\" 404 1024",
+        "expectedTimestamp": "2024-12-15 18:30:45.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "203.0.113.10 - - \"GET /nonexistent.html HTTP/1.1\" 404 1024"
+    },
+    {
+        "logLine": "192.0.2.1 - - [22/Feb/2025:09:15:30 +0100] \"POST /api/data HTTP/1.1\" 500 256",
+        "expectedTimestamp": "2025-02-22 09:15:30.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "192.0.2.1 - - \"POST /api/data HTTP/1.1\" 500 256"
+    },
+    {
+        "logLine": "198.51.100.5 - - [30/Apr/2025:14:45:22 +0200] \"GET /debug/status HTTP/1.1\" 200 512",
+        "expectedTimestamp": "2025-04-30 14:45:22.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "198.51.100.5 - - \"GET /debug/status HTTP/1.1\" 200 512"
+    }
+]

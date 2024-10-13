@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "2024-10-12T14:30:15.456Z INFO: Server is listening on port 3000",
+        "expectedTimestamp": "2024-10-12 14:30:15.4560",
+        "expectedLogLevel": "INFO",
+        "expectedMessage": "Server is listening on port 3000"
+    },
+    {
+        "logLine": "2024-09-05T08:25:30.789Z ERROR: Unhandled exception: TypeError",
+        "expectedTimestamp": "2024-09-05 08:25:30.7890",
+        "expectedLogLevel": "ERROR",
+        "expectedMessage": "Unhandled exception: TypeError"
+    },
+    {
+        "logLine": "2023-12-15T18:45:00.123Z DEBUG: User login successful",
+        "expectedTimestamp": "2023-12-15 18:45:00.1230",
+        "expectedLogLevel": "DEBUG",
+        "expectedMessage": "User login successful"
+    },
+    {
+        "logLine": "2024-11-20T10:15:45.678Z FATAL: Database connection lost",
+        "expectedTimestamp": "2024-11-20 10:15:45.6780",
+        "expectedLogLevel": "FATAL",
+        "expectedMessage": "Database connection lost"
+    },
+    {
+        "logLine": "2025-02-01T07:30:22.345Z WARN: Deprecated function called",
+        "expectedTimestamp": "2025-02-01 07:30:22.3450",
+        "expectedLogLevel": "WARNING",
+        "expectedMessage": "Deprecated function called"
+    },
+    {
+        "logLine": "2025-03-15T16:40:11.987Z TRACE: Entering function processPayment",
+        "expectedTimestamp": "2025-03-15 16:40:11.9870",
+        "expectedLogLevel": "TRACE",
+        "expectedMessage": "Entering function processPayment"
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "logLine": "203.0.113.195 - - [12/Oct/2024:15:32:45 +0000] \"GET /index.html HTTP/1.1\" 200 1024",
+        "expectedTimestamp": "2024-10-12 15:32:45.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "203.0.113.195 - - \"GET /index.html HTTP/1.1\" 200 1024"
+    },
+    {
+        "logLine": "192.168.1.1 - - [01/Jan/2024:12:00:00 +0100] \"POST /submit.php HTTP/1.1\" 404 256",
+        "expectedTimestamp": "2024-01-01 12:00:00.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "192.168.1.1 - - \"POST /submit.php HTTP/1.1\" 404 256"
+    },
+    {
+        "logLine": "172.16.254.1 - - [05/Aug/2023:23:45:10 +0800] \"PUT /update.json HTTP/2.0\" 500 512",
+        "expectedTimestamp": "2023-08-05 23:45:10.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "172.16.254.1 - - \"PUT /update.json HTTP/2.0\" 500 512"
+    },
+    {
+        "logLine": "10.0.0.1 - - [22/Mar/2025:08:15:30 +0000] \"GET /admin HTTP/1.1\" 403 1024",
+        "expectedTimestamp": "2025-03-22 08:15:30.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "10.0.0.1 - - \"GET /admin HTTP/1.1\" 403 1024"
+    },
+    {
+        "logLine": "192.0.2.10 - - [18/Jun/2025:14:20:45 +0200] \"POST /api/data HTTP/1.1\" 500 2048",
+        "expectedTimestamp": "2025-06-18 14:20:45.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "192.0.2.10 - - \"POST /api/data HTTP/1.1\" 500 2048"
+    },
+    {
+        "logLine": "198.51.100.50 - - [30/Sep/2025:22:10:15 +0100] \"GET /debug/status HTTP/1.1\" 200 4096",
+        "expectedTimestamp": "2025-09-30 22:10:15.0000",
+        "expectedLogLevel": "UNKNOWN",
+        "expectedMessage": "198.51.100.50 - - \"GET /debug/status HTTP/1.1\" 200 4096"
+    }
+]

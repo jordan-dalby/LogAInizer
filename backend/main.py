@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from processor import LogProcessor
-from parser import LogParser
+from src.processor import LogProcessor
+from src.parser import LogParser
 
 app = Flask(__name__)
 CORS(app)
@@ -28,7 +28,8 @@ def analyse_logs():
         else:
             return jsonify({'error': 'No file or logs provided'}), 400
 
-        print(logs)
+        print(f"Got {len(logs)} logs back")
+        print(f"{logs}")
         return jsonify({'logs': logs})
     except Exception as e:
         print(str(e))

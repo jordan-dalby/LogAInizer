@@ -1,5 +1,5 @@
 from typing import List, Dict, Optional
-from parser import LogParser
+from .parser import LogParser
 
 class LogProcessor:
     def __init__(self, log_parser: LogParser):
