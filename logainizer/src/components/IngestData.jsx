@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Upload, FileText } from 'lucide-react';
 
 const IngestData = ({ onDataReceived }) => {
-  const [activeTab, setActiveTab] = useState('upload');
+  const [activeTab, setActiveTab] = useState('paste');
   const [file, setFile] = useState(null);
   const [pastedLogs, setPastedLogs] = useState('');
   const [isLoading, setIsLoading] = useState(false);

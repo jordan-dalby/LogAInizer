@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { ChevronDown, ChevronUp, Minus, MinusCircle, Search } from 'lucide-react';
+import { ChevronDown, ChevronUp, Minus, Search } from 'lucide-react';
 import ContextMenu from './ContextMenu';
 import LogRow from './LogRow';
 
 const LogViewer = ({ logs }) => {
   const [filteredLogs, setFilteredLogs] = useState(logs);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterLevel, setFilterLevel] = useState('all');
+  const [selectedLevels, setSelectedLevels] = useState(new Set(['TRACE', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL', 'UNKNOWN']));
   const [selectedIndices, setSelectedIndices] = useState(new Set());
   const [initialSelectionIndex, setInitialSelectionIndex] = useState(null);
   const [isShiftPressed, setIsShiftPressed] = useState(false);
@@ -14,20 +14,22 @@ const LogViewer = ({ logs }) => {
   const [contextMenu, setContextMenu] = useState(null);
   const [sortOrder, setSortOrder] = useState('none'); // 'none', 'asc', or 'desc'
   const tableRef = useRef(null);
+  const scrollContainerRef = useRef(null);
 
-  const logLevels = useMemo(() => ['trace', 'debug', 'info', 'warning', 'error'], []);
+  const logLevels = useMemo(() => ['TRACE', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'FATAL', 'UNKNOWN'], []);
 
   useEffect(() => {
     let filtered = logs.filter(log => 
-      (filterLevel === 'all' || log.level === filterLevel) &&
+      selectedLevels.has(log.level) &&
       ((log.message ?? '').toLowerCase().includes((searchTerm ?? '').toLowerCase()) ||
        log.timestamp.includes(searchTerm))
     );
 
-    // Sort the filtered logs if a sort order is specified
     if (sortOrder !== 'none') {
       filtered.sort((a, b) => {
-        const compareResult = a.timestamp.localeCompare(b.timestamp);
+        const timestampA = a.timestamp ?? '';
+        const timestampB = b.timestamp ?? '';
+        const compareResult = timestampA.localeCompare(timestampB);
         return sortOrder === 'asc' ? compareResult : -compareResult;
       });
     }
@@ -35,7 +37,7 @@ const LogViewer = ({ logs }) => {
     setFilteredLogs(filtered);
     setSelectedIndices(new Set());
     setInitialSelectionIndex(null);
-  }, [logs, searchTerm, filterLevel, sortOrder]);
+  }, [logs, searchTerm, selectedLevels, sortOrder]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -62,6 +64,30 @@ const LogViewer = ({ logs }) => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [contextMenu]);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      if (scrollContainerRef.current) {
+        const containerHeight = scrollContainerRef.current.offsetHeight;
+        const headerHeight = scrollContainerRef.current.querySelector('thead').offsetHeight;
+        const scrollBodyHeight = containerHeight - headerHeight;
+        const scrollBody = scrollContainerRef.current.querySelector('.scroll-body');
+        if (scrollBody) {
+          scrollBody.style.height = `${scrollBodyHeight}px`;
+        }
+      }
+    });
+
+    if (scrollContainerRef.current) {
+      resizeObserver.observe(scrollContainerRef.current);
+    }
+
+    return () => {
+      if (scrollContainerRef.current) {
+        resizeObserver.unobserve(scrollContainerRef.current);
+      }
+    };
+  }, []);
 
   const handleRowClick = useCallback((index, event) => {
     event.preventDefault();
@@ -104,7 +130,7 @@ const LogViewer = ({ logs }) => {
       .sort((a, b) => a - b)
       .map(index => {
         const log = filteredLogs[index];
-        return `${log.timestamp}${log.level ? ` [${log.level.toUpperCase()}]` : ' [UNKNOWN]'} ${log.message}`;
+        return `${log.timestamp}${log.level ? ` [${log.level.toUpperCase()}]` : ''} ${log.message}`;
       })
       .join('\n');
   
@@ -121,7 +147,7 @@ const LogViewer = ({ logs }) => {
   const handleCopySingle = useCallback(() => {
     if (contextMenu) {
       const log = filteredLogs[contextMenu.index];
-      const logString = `${log.timestamp}${log.level ? ` [${log.level.toUpperCase()}]` : ' [UNKNOWN]'} ${log.message}`;
+      const logString = `${log.timestamp}${log.level ? ` [${log.level.toUpperCase()}]` : ''} ${log.message}`;
 
       navigator.clipboard.writeText(logString).then(() => {
         console.log('Single log copied to clipboard');
@@ -158,6 +184,26 @@ const LogViewer = ({ logs }) => {
     }
   };
 
+  const handleLevelChange = (level) => {
+    setSelectedLevels(prevLevels => {
+      const newLevels = new Set(prevLevels);
+      if (newLevels.has(level)) {
+        newLevels.delete(level);
+      } else {
+        newLevels.add(level);
+      }
+      return newLevels;
+    });
+  };
+
+  const handleSelectAllLevels = () => {
+    setSelectedLevels(new Set(logLevels));
+  };
+
+  const handleDeselectAllLevels = () => {
+    setSelectedLevels(new Set());
+  };
+
   return (
     <div className="flex flex-col h-full bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
       <div className="p-4 bg-gray-900 border-b border-gray-700">
@@ -172,23 +218,38 @@ const LogViewer = ({ logs }) => {
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           </div>
-          <select
-            value={filterLevel}
-            onChange={(e) => setFilterLevel(e.target.value)}
-            className="w-full p-2 bg-gray-800 border border-gray-600 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="all">All Levels</option>
+          <div className="flex flex-wrap gap-2">
             {logLevels.map(level => (
-              <option key={level} value={level}>
-                {level.charAt(0).toUpperCase() + level.slice(1)}
-              </option>
+              <button
+                key={level}
+                onClick={() => handleLevelChange(level)}
+                className={`px-3 py-1 text-sm rounded-md ${
+                  selectedLevels.has(level)
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-700 text-gray-300'
+                }`}
+              >
+                {level}
+              </button>
             ))}
-          </select>
+            <button
+              onClick={handleSelectAllLevels}
+              className="px-3 py-1 text-sm bg-gray-700 text-gray-300 rounded-md"
+            >
+              Select All
+            </button>
+            <button
+              onClick={handleDeselectAllLevels}
+              className="px-3 py-1 text-sm bg-gray-700 text-gray-300 rounded-md"
+            >
+              Deselect All
+            </button>
+          </div>
         </div>
       </div>
 
       <div className="flex-grow overflow-hidden" ref={tableRef}>
-        <div className="overflow-x-auto w-full">
+        <div className="h-full overflow-hidden" ref={scrollContainerRef}>
           <table className="min-w-full">
             <thead className="bg-gray-900 sticky top-0 z-10">
               <tr>
@@ -206,22 +267,22 @@ const LogViewer = ({ logs }) => {
               </tr>
             </thead>
           </table>
-        </div>
-        <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 330px)' }}>
-          <table className="min-w-full">
-            <tbody className="bg-gray-800 divide-y divide-gray-700">
-              {filteredLogs.map((log, index) => (
-                <LogRow
-                  key={index}
-                  log={log}
-                  index={index}
-                  isSelected={selectedIndices.has(index)}
-                  onClick={(e) => handleRowClick(index, e)}
-                  onContextMenu={(e) => handleContextMenu(e, index)}
-                />
-              ))}
-            </tbody>
-          </table>
+          <div className="scroll-body overflow-y-auto">
+            <table className="min-w-full">
+              <tbody className="bg-gray-800 divide-y divide-gray-700">
+                {filteredLogs.map((log, index) => (
+                  <LogRow
+                    key={index}
+                    log={log}
+                    index={index}
+                    isSelected={selectedIndices.has(index)}
+                    onClick={(e) => handleRowClick(index, e)}
+                    onContextMenu={(e) => handleContextMenu(e, index)}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       {contextMenu && (

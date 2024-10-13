@@ -1,24 +1,26 @@
 import React from 'react';
-import { AlertCircle, Info, AlertTriangle, Bug, Glasses, CircleHelp } from 'lucide-react';
+import { AlertCircle, Info, AlertTriangle, Bug, Glasses, CircleHelp, Skull } from 'lucide-react';
 
 const getLevelStyle = (level) => {
   switch(level) {
-    case 'trace': return 'bg-purple-900 text-purple-200';
-    case 'debug': return 'bg-green-900 text-green-200';
-    case 'info': return 'bg-blue-900 text-blue-200';
-    case 'warning': return 'bg-yellow-900 text-yellow-200';
-    case 'error': return 'bg-red-900 text-red-200';
+    case 'TRACE': return 'bg-purple-900 text-purple-200';
+    case 'DEBUG': return 'bg-green-900 text-green-200';
+    case 'INFO': return 'bg-blue-900 text-blue-200';
+    case 'WARNING': return 'bg-yellow-900 text-yellow-200';
+    case 'ERROR': return 'bg-red-900 text-red-200';
+    case 'FATAL': return 'bg-red-950 text-red-100';
     default: return 'bg-gray-700 text-gray-200';
   }
 };
 
 const getLogIcon = (level) => {
   switch(level) {
-    case 'trace': return <Glasses className="text-purple-400" size={16} />;
-    case 'debug': return <Bug className="text-green-400" size={16} />;
-    case 'info': return <Info className="text-blue-400" size={16} />;
-    case 'warning': return <AlertTriangle className="text-yellow-400" size={16} />;
-    case 'error': return <AlertCircle className="text-red-400" size={16} />;
+    case 'TRACE': return <Glasses className="text-purple-400" size={16} />;
+    case 'DEBUG': return <Bug className="text-green-400" size={16} />;
+    case 'INFO': return <Info className="text-blue-400" size={16} />;
+    case 'WARNING': return <AlertTriangle className="text-yellow-400" size={16} />;
+    case 'ERROR': return <AlertCircle className="text-red-400" size={16} />;
+    case 'FATAL': return <Skull className="text-red-100" size={16} />;
     default: return <CircleHelp className="text-gray-200" size={16} />;
   }
 };
